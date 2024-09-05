@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/userInfo', [App\Http\Controllers\UserController::class, 'userInfo']);
+Route::post('/submissions', [App\Http\Controllers\SubmissionController::class, 'store']);
