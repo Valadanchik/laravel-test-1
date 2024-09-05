@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Submissions;
 
+use App\Events\SubmissionSaved;
 use App\Models\Submission;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -27,6 +28,13 @@ class StoreJob implements ShouldQueue
     public function handle(): void
     {
         // Save submission to database
-        Submission::create($this->data);
+        try {
+            Submission::create($this->data);
+        } catch (\Exception $e) {
+            info($e->getMessage());
+        }
+
+        // Dispatch event
+        SubmissionSaved::dispatch($this->data['name'], $this->data['email']);
     }
 }
