@@ -69,5 +69,10 @@ php artisan queue:work
 7. For checking the failed jobs, check the `failed_jobs` table
 
 
+## Testing
 
+1. Run the tests
+```bash
+php artisan test
+```
 
